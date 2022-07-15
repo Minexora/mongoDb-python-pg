@@ -9,7 +9,8 @@ class MongoDBProgress:
 
     def __init__(self) -> None:
         try:
-            self.mongo_client = pymongo.MongoClient("mongodb://sandbox:deneme12@localhost:27017/")
+            self.mongo_client = pymongo.MongoClient(
+                "mongodb://sandbox:deneme12@localhost:27017/")
         except Exception:
             print(traceback.format_exc())
 
@@ -36,4 +37,5 @@ class MongoDBProgress:
         res = self.collection_ref.insert_one(data)
         return res.inserted_id
 
-    
+    def delete_data_to_collection(self, query, database_name="Sandbox", collection_name=None):
+        res = self.collection_ref.delete_one(query)

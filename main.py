@@ -1,6 +1,6 @@
-from datetime import datetime
-from distutils.command.check import SilentReporter
 import json
+from time import sleep
+from datetime import datetime
 from mongo import MongoDBProgress
 
 start_time = datetime.now().strftime('%m/%d/%Y-%H:%M:%S')
@@ -26,3 +26,12 @@ res = mongo_ref.insert_data_to_collection(
 print(f"Kayıt eklendi. Kayıt id: {res}")
 
 
+sleep(30)
+
+_query = {"name": "Giray"}
+
+mongo_ref.delete_data_to_collection(
+    database_name="Sandbox",
+    collection_name="USER_FOR_SANDBOX",
+    query=_query
+)
